@@ -10,6 +10,14 @@ module.exports = {
       console.log(err);
     }
   },
+  getaddRecipe: async (req, res) => {
+    try {
+      const posts = await Post.find({ user: req.user.id });
+      res.render("addRecipe.ejs", { posts: posts, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
