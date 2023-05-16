@@ -1,5 +1,4 @@
-const cloudinary = require("../middleware/cloudinary");
-const Post = require("../models/Post");
+
 const Comment = require("../models/Comment");
 
 module.exports = {
@@ -40,12 +39,12 @@ module.exports = {
     try {
       await Comment.create({
         comment: req.body.comment,
-        postId : req.params.id,
+        post : req.params.id,
         // likes: 0,
         user: req.user.userName,
       });
-      console.log("Post has been added!");
-      res.redirect("/profile");
+      console.log("comments has been added!");
+      res.redirect("/post/"+req.params.id);
     } catch (err) {
       console.log(err);
     }
