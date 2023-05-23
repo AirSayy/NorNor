@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Binary Upload Boom</title>
+    <title>NorNor</title>
     <link
       rel="icon"
       type="image/png"
@@ -33,6 +33,12 @@
   <body>
     <header class="container">
       <div class="text-center">
+        <%if(post.user == user.id){ %>
+          <a href="/logout" class="col-3 btn btn-primary">Logout</a>
+        <%}%>
+        <%else { %>
+          <a href="/login" class="col-3 btn btn-primary">Login</a>
+        <%}%>
         <h1 class=""><a href="/profile">Logo</a></h1>
       </div>
     </header>
