@@ -25,20 +25,15 @@
     />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.tiny.cloud/1/zd10nd0dfulhw6mjei0xbp47eqfs1znbe47443pj623gehay/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
-    <link href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="node_modules/froala-editor/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" /> -->
     <!-- CSS rules for styling the element inside the editor such as p, h1, h2, etc. -->
-<link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="../css/froala_style.min.css" rel="stylesheet" type="text/css" /> -->
     <link rel="stylesheet" href="/css/style.css" />
   </head>
   <body>
     <header class="container">
       <div class="text-center">
-        <%if(post.user == user.id){ %>
-          <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-        <%}%>
-        <%else { %>
-          <a href="/login" class="col-3 btn btn-primary">Login</a>
-        <%}%>
+      
         <h1 class=""><a href="/profile">Logo</a></h1>
       </div>
     </header>
