@@ -1,6 +1,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>  
-    
-<script>
+    <script>
+      var simplemde = new SimpleMDE({element: document.getElementById("textarea")});
+      </script>
+<!-- <script>
   tinymce.init({
     selector: '#caption',
     plugins: 'anchor autolink preview emoticons image link lists  linkchecker a11ychecker tinymcespellchecker ',
@@ -11,16 +13,10 @@
     content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:16px }',
     formatting : true
   });
-  async function saveContent() {
-      try {
-        const caption = await Post.find({caption : req.user.caption})
-      } catch (error) {
-        
-      }
-  }
-</script>
-// <!-- <script src="https://unpkg.com/turndown/dist/turndown.js"></script> -->
-// <!-- <script type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script>
+  
+</script> -->
+ <!-- <script src="https://unpkg.com/turndown/dist/turndown.js"></script> -->
+ <!-- <script type="text/javascript" src="node_modules/froala-editor/js/froala_editor.pkgd.min.js"></script>
 // <script>
 //   new FroalaEditor('textarea', {
 //     toolbarButtons: ['bold', 'italic', 'underline', 'paragraphFormat', 'align', 'markdown', 'undo', 'redo']
