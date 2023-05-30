@@ -3,35 +3,55 @@ const Post = require("../models/Post");
 const Comment = require("../models/Comment");
 
 module.exports = {
+  // GET /profile 
   getProfile: async (req, res) => {
     try {
+      // find the Post with the user ID and save in the variable posts
       const posts = await Post.find({ user: req.user.id })
       
+      // render the profile.ejs 
       res.render("profile.ejs", { posts: posts, user: req.user ,});
     } catch (err) {
       console.log(err);
     }
   },
+
+  // GET /addRecipe
   getaddRecipe: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("addRecipe.ejs", { posts: posts, user: req.user });
+
+      // renders the addRecipe.ejs
+      res.render("addRecipe.ejs",);
     } catch (err) {
       console.log(err);
     }
   },
+
+  // GET /feed
   getFeed: async (req, res) => {
     try {
+      // find and sort all posts in decsending order
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+
+      // renders posts in /feed 
       res.render("feed.ejs", { posts: posts });
     } catch (err) {
       console.log(err);
     }
   },
+
+  // GET /post
   getPost: async (req, res) => {
     try {
+
+      // find post by id parameters 
       const post = await Post.findById(req.params.id);
+
+      // find comments and sort in descending order
       const comments = await Comment.find({post:req.params.id}).sort({ createdAt: "desc" }).lean();
+
+      // renders post,user,and comments to /post
       res.render("post.ejs", { post: post, user: req.user , comments: comments });
     } catch (err) {
       console.log(err);
@@ -42,6 +62,7 @@ module.exports = {
       // Upload image to cloudinary
       const result = await cloudinary.uploader.upload(req.file.path);
       
+      // creates a new postSchema document in the database
       await Post.create({
         title: req.body.title,
         image: result.secure_url,
@@ -54,6 +75,8 @@ module.exports = {
 
 
       console.log("Post has been added!");
+
+      // redirects data to /profile
       res.redirect("/profile");
     } catch (err) {
       console.log(err);

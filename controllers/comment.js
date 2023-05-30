@@ -35,8 +35,12 @@ module.exports = {
 //       console.log(err);
 //     }
 //   },
+
+// CREATE /comments
   createComment: async (req, res) => {
     try {
+
+      // creates your data on your database using the CommnetSchema
       await Comment.create({
         comment: req.body.comment,
         post : req.params.id,
@@ -44,6 +48,8 @@ module.exports = {
         user: req.user.userName,
       });
       console.log("comments has been added!");
+
+      // after data creation, redirect to /post parameters id
       res.redirect("/post/"+req.params.id);
     } catch (err) {
       console.log(err);
