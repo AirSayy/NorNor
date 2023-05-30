@@ -105,7 +105,7 @@ module.exports = {
     }
   },
 
-  // DELETES /post
+  // DELETE /post
   deletePost: async (req, res) => {
     try {
       // Find post by id
