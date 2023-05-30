@@ -10,6 +10,7 @@
   "author": "Eseoghene Eguakhide",
   "license": "MIT",
   "dependencies": {
+    "@stackoverflow/stacks-editor": "^0.8.7",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.25.1",
     "connect-mongo": "^3.2.0",
@@ -18,7 +19,7 @@
     "express": "^4.17.1",
     "express-flash": "^0.0.2",
     "express-session": "^1.17.1",
-    "froala-editor": "^4.0.19",
+    "mammoth": "^1.5.1",
     "method-override": "^3.0.0",
     "mongodb": "^3.6.5",
     "mongoose": "^5.12.3",
@@ -27,7 +28,6 @@
     "nodemon": "^2.0.7",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "simplemde": "^1.11.2",
     "tinymce": "^6.4.2",
     "validator": "^13.6.0"
   },
