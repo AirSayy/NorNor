@@ -57,6 +57,8 @@ module.exports = {
       console.log(err);
     }
   },
+
+  // CREATE /post
   createPost: async (req, res) => {
     try {
       // Upload image to cloudinary
@@ -82,8 +84,12 @@ module.exports = {
       console.log(err);
     }
   },
+
+  // UPDATE(like) /post 
   likePost: async (req, res) => {
     try {
+
+      // finds post and update +1 like
       await Post.findOneAndUpdate(
         { _id: req.params.id },
         {
@@ -91,11 +97,15 @@ module.exports = {
         }
       );
       console.log("Likes +1");
+
+      // redirects +1 likes to post id
       res.redirect(`/post/${req.params.id}`);
     } catch (err) {
       console.log(err);
     }
   },
+
+  // DELETES /post
   deletePost: async (req, res) => {
     try {
       // Find post by id
@@ -105,6 +115,8 @@ module.exports = {
       // Delete post from db
       await Post.remove({ _id: req.params.id });
       console.log("Deleted Post");
+
+      // redirect to /profile
       res.redirect("/profile");
     } catch (err) {
       res.redirect("/profile");
