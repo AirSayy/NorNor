@@ -1,1 +1,1 @@
-A Recipe network app
+A Recipe network app.
