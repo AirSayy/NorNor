@@ -25,7 +25,22 @@
       </div>
     </div>
     <div class="col-3 mt-5">
-      <p><%= post.caption %></p>
+      <p><%= post.title %></p>
+      <!-- Show recipe details -->
+<h2>Ingredients:</h2>
+<ul class="ingredient-item text-center">
+  <% post.ingredients.forEach((ingredient) => { %>
+    <li class="list-disc"><%= ingredient %></li>
+  <% }); %>
+</ul>
+
+<h2>Instructions:</h2>
+<ol >
+  <% post.instructions.forEach((instruction) => { %>
+    <li class="instruction-item"><%= instruction %></li>
+  <% }); %>
+</ol>
+
     </div>
     <h2>Add comment</h2>
             <form action="/comment/createComment/<%= post._id%>"  method="POST">

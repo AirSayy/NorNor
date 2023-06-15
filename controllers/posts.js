@@ -1,5 +1,5 @@
 const cloudinary = require("../middleware/cloudinary");
-const Post = require("../models/Post");
+const Post = require("../models/Recipe");
 const Comment = require("../models/Comment");
 
 module.exports = {
@@ -19,9 +19,7 @@ module.exports = {
   // GET /addRecipe
   getaddRecipe: async (req, res) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-
-      // renders the addRecipe.ejs
+       // renders the addRecipe.ejs
       res.render("addRecipe.ejs",);
     } catch (err) {
       console.log(err);
@@ -47,6 +45,7 @@ module.exports = {
 
       // find post by id parameters 
       const post = await Post.findById(req.params.id);
+      console.log(post)
 
       // find comments and sort in descending order
       const comments = await Comment.find({post:req.params.id}).sort({ createdAt: "desc" }).lean();
@@ -59,31 +58,67 @@ module.exports = {
   },
 
   // CREATE /post
-  createPost: async (req, res) => {
-    try {
-      // Upload image to cloudinary
-      const result = await cloudinary.uploader.upload(req.file.path);
+  // createPost: async (req, res) => {
+  //   try {
+  //     // Upload image to cloudinary
+  //     const result = await cloudinary.uploader.upload(req.file.path);
       
-      // creates a new postSchema document in the database
-      await Post.create({
-        title: req.body.title,
-        image: result.secure_url,
-        cloudinaryId: result.public_id,
-        caption: req.body.caption.replace(/(<([^>]+)>)/gi, ""),
-        likes: 0,
-        user: req.user.id,
-      });
+  //     // creates a new postSchema document in the database
+  //     await Post.create({
+  //       title: req.body.title,
+  //       image: result.secure_url,
+  //       cloudinaryId: result.public_id,
+  //       ingredients: req.body.ingredients.split('\n'),
+  //       instructions: req.body.instructions.split('\n'),
+  //       likes: 0,
+  //       user: req.user.id,
+  //     });
       
 
+      
+  //     console.log("Post has been added!");
 
-      console.log("Post has been added!");
+  //     // redirects data to /profile
+  //     res.redirect("/profile");
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
 
-      // redirects data to /profile
-      res.redirect("/profile");
-    } catch (err) {
-      console.log(err);
-    }
-  },
+  // CREATE /post
+createPost: async (req, res) => {
+  try {
+    // Upload image to cloudinary
+    const result = await cloudinary.uploader.upload(req.file.path);
+
+    // Normalize newline characters to '\n' and split ingredients and instructions
+    const ingredientsArray = req.body.ingredients.replace(/\r\n|\r/g, '\n').split('\n');
+    const instructionsArray = req.body.instructions.replace(/\r\n|\r/g, '\n').split('\n');
+
+    // Trim whitespace from each ingredient and instruction
+    const trimmedIngredients = ingredientsArray.map((ingredient) => ingredient.trim());
+    const trimmedInstructions = instructionsArray.map((instruction) => instruction.trim());
+
+    // Create a new postSchema document in the database
+    await Post.create({
+      title: req.body.title,
+      image: result.secure_url,
+      cloudinaryId: result.public_id,
+      ingredients: trimmedIngredients,
+      instructions: trimmedInstructions,
+      likes: 0,
+      user: req.user.id,
+    });
+
+    console.log("Post has been added!");
+
+    // Redirect to /profile
+    res.redirect("/profile");
+  } catch (err) {
+    console.log(err);
+  }
+},
+
 
   // UPDATE(like) /post 
   likePost: async (req, res) => {
