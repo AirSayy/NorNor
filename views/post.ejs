@@ -25,12 +25,12 @@
       </div>
     </div>
     <div class="col-3 mt-5">
-      <p><%= post.title %></p>
+      <p class=""><%= post.title %></p> 
       <!-- Show recipe details -->
-<h2>Ingredients:</h2>
+<h2>Ingredients:</h2> 
 <ul class="ingredient-item text-center">
   <% post.ingredients.forEach((ingredient) => { %>
-    <li class="list-disc"><%= ingredient %></li>
+    <li><%= ingredient %></li>
   <% }); %>
 </ul>
 
