@@ -76,7 +76,7 @@ Once the application is running, you can use the Food Social Networking App as f
 
 ## Contributing
 
-Contributions to the Global Food Social Networking App are welcome! If you find any bugs or have suggestions for improvements, please submit an issue or a pull request to the GitHub repository.
+Contributions to the Food Social Networking App are welcome! If you find any bugs or have suggestions for improvements, please submit an issue or a pull request to the GitHub repository.
 
 When contributing to this project, please ensure that your changes are well-documented and follow best practices.
 
