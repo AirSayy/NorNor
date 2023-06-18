@@ -40,7 +40,7 @@
   
   .testimonial {
     animation: slide 10s infinite;
-    flex: 0 0 33.33%; /* Adjust to control the number of testimonials displayed */
+    flex: 0 2 33.33%; /* Adjust to control the number of testimonials displayed */
   }
   
   @keyframes slide {
