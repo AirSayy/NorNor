@@ -1,47 +1,31 @@
 <%- include('partials/header') -%>
 <div class="container">
-  <div class="row mt-5">
-      <div class="col-6">
-          <div>
-              <h1><strong>Hello</strong>: <%= user.userName %></h1>
-              <!-- <p><strong>Email</strong>: <%= user.email %></p> -->
-              <a href="/logout" class="col-3 btn btn-primary">Logout</a>
-              <a href="/addRecipe" class="col-3 btn btn-primary">Add Recipe</a>
-          </div>
-          <!-- <div class="mt-5">
-            <h2>Add a post</h2>
-            <form action="/post/createPost" enctype="multipart/form-data" method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">Title</label>
-                  <input type="text" class="form-control" id="title" name="title">
-              </div>
-              <div class="mb-3">
-                <label for="caption" class="form-label">Caption</label>
-                <textarea class="form-control" id="caption" name="caption"></textarea>
-              </div>
-              <div class="mb-3">
-                <label for="imgUpload" class="form-label">Image</label>
-                <input type="file" class="form-control" id="imageUpload" name="file">
-              </div>
-              <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
-            </form>
-          </div> -->
+  <div class="grid grid-cols-1 md:grid-cols-2 mt-5">
+    <div class="p-4 bg-white">
+      <div>
+        <h1 class="font-serif text-2xl text-left font-bold mb-4">Hello: <%= user.userName %></h1>
+        
       </div>
-      <div class="col-6">
-        <ul class="row list-unstyled">
+    </div>
+    <div class="p-4 bg-white">
+      <ul class="grid grid-cols-2 gap-4">
         <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
+        <li class="justify-self-start">
+          <a href="/post/<%= posts[i]._id%>">
+            <img class="max-w-full h-auto" src="<%= posts[i].image%>">
+          </a>
+        </li>
         <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
+      </ul>
+      <div class="flex justify-center mt-5">
+        <button class=" border-s-green-800 bg-yellow-500 text-white mb-2 p-2 mr-2 rounded-lg"><a href="/addRecipe" >Add Recipe</a></button>
+        <button class=" border-s-green-800 bg-green-500 text-white  mb-2 p-2 rounded-lg"><a href="/logout" >Logout</a></button>
+        
+        
+      </div>
+      <button class=" border-s-green-800 bg-green-700 text-white mb-2 p-2 rounded-lg"><a href="/feed">Go to Feed</a></button>
     </div>
   </div>
 </div>
+
 <%- include('partials/footer') -%>

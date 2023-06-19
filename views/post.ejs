@@ -1,67 +1,63 @@
 <%- include('partials/header') -%>
+<!--  -->
 <div class="container">
-  <div class="row justify-content-center mt-5">
-    <div class="col-6">
-      <h2><%= post.title %></h2>
-      <img class="img-fluid rounded-lg" src="<%= post.image%>" />
-      <div class="row justify-content-between">
-        <form
-          class="col-1"
-          action="/post/likePost/<%= post.id %>?_method=PUT"
-          method="POST"
-        >
-          <button class="btn btn-primary fa fa-heart" type="submit"></button>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
+    <div class="p-4 bg-white rounded-lg">
+      <h2 class="text-2xl font-bold mb-4"><%= post.title %></h2>
+      <div class="aspect-w-3 aspect-h-2">
+        <img class="object-cover rounded-lg" src="<%= post.image%>" alt="Post Image" />
+      </div>
+      <div class="grid grid-cols-3 gap-4 mt-4">
+        <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
+          <button class="btn bg-green-500 text-white p-2 rounded-full" type="submit">
+            <i class="fa fa-heart"></i>
+          </button>
         </form>
-        <h3 class="col-3">Likes: <%= post.likes %></h3>
-        <%if(post.user == user.id){ %>
-        <form
-          action="/post/deletePost/<%= post.id %>?_method=DELETE"
-          method="POST"
-          class="col-3"
-        >
-          <button class="btn btn-primary fa fa-trash" type="submit"></button>
+        <h3 class="col-span-2">Likes: <%= post.likes %></h3>
+        <% if(post.user == user.id) { %>
+        <form action="/post/deletePost/<%= post.id %>?_method=DELETE" method="POST">
+          <button class="btn bg-red-500 text-white p-2 rounded-full" type="submit">
+            <i class="fa fa-trash"></i>
+          </button>
         </form>
-        <%}%>
+        <% } %>
       </div>
     </div>
-    <div class="col-3 mt-5">
-      <p class=""><%= post.title %></p> 
-      <!-- Show recipe details -->
-<h2>Ingredients:</h2> 
-<ul class="ingredient-item text-center">
-  <% post.ingredients.forEach((ingredient) => { %>
-    <li><%= ingredient %></li>
-  <% }); %>
-</ul>
-
-<h2>Instructions:</h2>
-<ol >
-  <% post.instructions.forEach((instruction) => { %>
-    <li class="instruction-item"><%= instruction %></li>
-  <% }); %>
-</ol>
-
+    <div class="p-4 bg-white rounded-lg mt-5">
+      
+      <h2 class="text-xl font-bold mb-2">Ingredients:</h2>
+      <ul class="text-gray-500 list-disc list-inside">
+        <% post.ingredients.forEach((ingredient) => { %>
+        <li><%= ingredient %></li>
+        <% }); %>
+      </ul>
+      <h2 class="text-xl font-bold mt-4 mb-2">Instructions:</h2>
+      <ol>
+        <% post.instructions.forEach((instruction) => { %>
+        <li><%= instruction %></li>
+        <% }); %>
+      </ol>
     </div>
-    <h2>Add comment</h2>
-            <form action="/comment/createComment/<%= post._id%>"  method="POST">
-              <div class="mb-3">
-                  <label for="title" class="form-label">comment</label>
-                  <input type="text" class="form-control" id="comment" name="comment">
-              </div>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
-    <ul>
-      <% for(var i=0; i<comments.length; i++) {%>
-        <li class="col-6 justify-content-between mt-5">
-          
-        <strong> <%= comments[i].user %> : </strong> <%= comments[i].comment %>
-          
+    <div class="p-4 bg-white rounded-lg mt-5">
+      <h2 class="text-xl font-bold mb-4">Add Comment</h2>
+      <form action="/comment/createComment/<%= post._id%>" method="POST">
+        <div class="mb-3">
+          <label for="comment" class="form-label">Comment</label>
+          <input type="text" class="form-control" id="comment" name="comment">
+        </div>
+        <button type="submit" class="btn bg-blue-500 text-white">Submit</button>
+      </form>
+      <ul>
+        <% for(var i=0; i<comments.length; i++) { %>
+        <li class="mt-5">
+          <strong><%= comments[i].user %>: </strong><%= comments[i].comment %>
         </li>
-      <% } %>
-    </ul>
-    <div class="col-6 mt-5">
-      <a class="btn btn-primary" href="/profile">Return to Profile</a>
-      <a class="btn btn-primary" href="/feed">Return to Feed</a>
+        <% } %>
+      </ul>
+    </div>
+    <div class="col-span-2 mt-5">
+      <a class="btn bg-blue-500 text-white" href="/profile">Return to Profile</a>
+      <a class="btn bg-blue-500 text-white" href="/feed">Return to Feed</a>
     </div>
   </div>
 </div>
