@@ -33,25 +33,5 @@
     height: 100%;
 };
 
-.carousel {
-    display: flex;
-    overflow: hidden;
-  }
-  
-  .testimonial {
-    animation: slide 10s infinite;
-    flex: 0 2 33.33%; /* Adjust to control the number of testimonials displayed */
-  }
-  
-  @keyframes slide {
-    0%, 100% {
-      opacity: 0;
-      transform: translateX(100%);
-    }
-    10%, 90% {
-      opacity: 1;
-      transform: translateX(0);
-    }
-  }
-  
+
   
