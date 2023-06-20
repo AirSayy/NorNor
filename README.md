@@ -1,4 +1,4 @@
-# Food Social Networking App
+# Food Networking App
 
 Welcome to the Global Food Social Networking App! This application allows users to share their favorite food recipes, post comments, and interact with others through likes and comments on recipes. This README provides an overview of the project, installation instructions, and key features.
 
