@@ -1,33 +1,55 @@
 <%- include('partials/header') -%>
 <!--  -->
+<div class=" bg-gray-100 relative">
+  <img class="absolute right-3 block w-[30%]  rounded-full object-cover opacity-25 " src="<%= post.image%>" alt="">
 <div class="container">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-    <div class="p-4 bg-white rounded-lg">
-      <h2 class="text-2xl font-bold mb-4"><%= post.title %></h2>
-      <div class="aspect-w-3 aspect-h-2">
-        <img class="object-cover rounded-lg" src="<%= post.image%>" alt="Post Image" />
-      </div>
-      <div class="grid grid-cols-3 gap-4 mt-4">
+
+  <div class="flex  bg-white justify-around ml-4 relative top-4 border-solid border-2 border-gray-600 w-[60%] p-8 shadow-2xl rounded-xl" >
+
+    <div class="mr-10">
+      <h2 class="text-2xl font-bold font-['Jost'] text-center uppercase tracking-widest mb-4"><%= post.title %></h2>
+      
+      <img class="relative bottom-4 block w-[50%] rounded-lg shadow-xl dark:shadow-gray-600" src="<%= post.image%>" alt="Post Image" />
+        
+      
+
+      <div class="flex justify-between">
         <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
-          <button class="btn bg-green-500 text-white p-2 rounded-full" type="submit">
-            <i class="fa fa-heart"></i>
+          <button class="btn  text-red-800 " type="submit">
+            <i class=" fa fa-heart"></i>
           </button>
+          <span class=""> <%= post.likes %></span>
         </form>
-        <h3 class="col-span-2">Likes: <%= post.likes %></h3>
+        
         <% if(post.user == user.id) { %>
         <form action="/post/deletePost/<%= post.id %>?_method=DELETE" method="POST">
-          <button class="btn bg-red-500 text-white p-2 rounded-full" type="submit">
+          <button class="btn text-black" type="submit">
             <i class="fa fa-trash"></i>
           </button>
         </form>
         <% } %>
       </div>
+      <div class="flex">
+          
+        <div class="mr-3">
+          <span class="block">Prep-Time</span>
+          <span class="block"><%= post.prepTime %></span>
+        </div>
+          
+        <div class="mr-3">
+          <span class="block">Cook-Time</span>
+          <span class="block"><%= post.cookTime %></span>
+        </div>
+          
+        <div>
+          <span class="block">Servings</span>
+          <span class="block"><%= post.servings %></span>
+        </div>
+          
+      </div>
     </div>
+
     <div class="p-4 bg-white rounded-lg mt-5">
-      <span>Prep-Time :<%= post.prepTime %></span>
-      <span>Cook-Time :<%= post.cookTime %></span>
-      <span>Servings :<%= post.servings %></span>
-      
       <h2 class="text-xl font-bold mb-2">Ingredients:</h2>
       <ul class="text-gray-500 list-disc list-inside">
         <% post.ingredients.forEach((ingredient) => { %>
@@ -35,35 +57,37 @@
         <% }); %>
       </ul>
       <h2 class="text-xl font-bold mt-4 mb-2">Instructions:</h2>
-      <ol>
+      <ol class="list-decimal list-inside ">
         <% post.instructions.forEach((instruction) => { %>
         <li><%= instruction %></li>
         <% }); %>
       </ol>
-      <p>Notes <%= post.descriptions %></p>
+      <p>Notes<%= post.descriptions %></p>
     </div>
-    <div class="p-4 bg-white rounded-lg mt-5">
-      <h2 class="text-xl font-bold mb-4">Add Comment</h2>
-      <form action="/comment/createComment/<%= post._id%>" method="POST">
-        <div class="mb-3">
-          <label for="comment" class="form-label">Comment</label>
-          <input type="text" class="form-control" id="comment" name="comment">
-        </div>
-        <button type="submit" class="btn bg-blue-500 text-white">Submit</button>
-      </form>
-      <ul>
-        <% for(var i=0; i<comments.length; i++) { %>
-        <li class="mt-5">
-          <strong><%= comments[i].user %>: </strong><%= comments[i].comment %>
-        </li>
-        <% } %>
-      </ul>
-    </div>
-    <div class="col-span-2 mt-5">
-      <a class="btn bg-blue-500 text-white" href="/profile">Return to Profile</a>
-      <a class="btn bg-blue-500 text-white" href="/feed">Return to Feed</a>
-    </div>
+    
+  </div>
+  
+  <div class="p-4 bg-white rounded-lg mt-5">
+    <h2 class="text-xl font-bold mb-4">Add Comment</h2>
+    <form action="/comment/createComment/<%= post._id%>" method="POST">
+      <div class="mb-3">
+        <label for="comment" class="form-label">Comment</label>
+        <input type="text" class="form-control" id="comment" name="comment">
+      </div>
+      <button type="submit" class="btn  bg-blue-500 text-white">Submit</button>
+    </form>
+    <ul>
+      <% for(var i=0; i<comments.length; i++) { %>
+      <li class="mt-5">
+        <strong><%= comments[i].user %>: </strong><%= comments[i].comment %>
+      </li>
+      <% } %>
+    </ul>
+  </div>
+  <div class="col-span-2 mt-5">
+    <a class="btn bg-blue-500 text-white" href="/profile">Return to Profile</a>
+    <a class="btn bg-blue-500 text-white" href="/feed">Return to Feed</a>
   </div>
 </div>
-
+</div>
 <%- include('partials/footer') -%>
