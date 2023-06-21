@@ -45,7 +45,7 @@ module.exports = {
 
       // find post by id parameters 
       const post = await Post.findById(req.params.id);
-      console.log(post)
+      
 
       // find comments and sort in descending order
       const comments = await Comment.find({post:req.params.id}).sort({ createdAt: "desc" }).lean();
@@ -107,6 +107,9 @@ createPost: async (req, res) => {
       ingredients: trimmedIngredients,
       instructions: trimmedInstructions,
       descriptions : req.body.descriptions,
+      prepTime: req.body.prepTime,
+      cookTime: req.body.cookTime,
+      servings: req.body.servings,
       likes: 0,
       user: req.user.id,
     });

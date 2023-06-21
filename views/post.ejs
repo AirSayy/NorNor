@@ -24,7 +24,10 @@
       </div>
     </div>
     <div class="p-4 bg-white rounded-lg mt-5">
-      <p><%= post.descriptions %></p>
+      <span>Prep-Time :<%= post.prepTime %></span>
+      <span>Cook-Time :<%= post.cookTime %></span>
+      <span>Servings :<%= post.servings %></span>
+      
       <h2 class="text-xl font-bold mb-2">Ingredients:</h2>
       <ul class="text-gray-500 list-disc list-inside">
         <% post.ingredients.forEach((ingredient) => { %>
@@ -37,6 +40,7 @@
         <li><%= instruction %></li>
         <% }); %>
       </ol>
+      <p>Notes <%= post.descriptions %></p>
     </div>
     <div class="p-4 bg-white rounded-lg mt-5">
       <h2 class="text-xl font-bold mb-4">Add Comment</h2>
