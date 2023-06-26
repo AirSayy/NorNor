@@ -7,13 +7,13 @@
   <div class="flex  bg-white justify-around ml-4 relative top-4 border-solid border-2 border-gray-100 w-[60%] p-8 shadow-2xl rounded-xl" >
 
     <div class="mr-10">
-      <h2 class="text-2xl font-bold font-['Pacifico'] text-center uppercase tracking-[.5rem] mb-4"><%= post.title %></h2>
+      <h2 class="text-2xl font-bold font-mono text-center uppercase tracking-[.5rem] mb-4"><%= post.title %></h2>
       
       <img class="relative bottom-4 block w-[50%] rounded-lg shadow-xl dark:shadow-gray-600" src="<%= post.image%>" alt="Post Image" />
         
       
 
-      <div class="flex justify-between">
+      <div class="flex justify-between w-[30%]">
         <form action="/post/likePost/<%= post.id %>?_method=PUT" method="POST">
           <button class="btn  text-red-800 " type="submit">
             <i class=" fa fa-heart"></i>
@@ -29,43 +29,45 @@
         </form>
         <% } %>
       </div>
-      <div class="flex font-['Allura']">
+      <div class="flex font-serif mt-5">
           
-        <div class="mr-3">
-          <span class="block">Prep-Time</span>
-          <span class="block"><%= post.prepTime %></span>
+        <div class="mr-3  ">
+          <span class="block text-sm font-thin">Prep-Time</span>
+          <span class="block font-mono text-l font-thin mt-2"><%= post.prepTime %></span>
         </div>
           
-        <div class="mr-3">
-          <span class="block">Cook-Time</span>
-          <span class="block"><%= post.cookTime %></span>
+        <div class="mr-3 border-l-2 border-gray-400 px-2">
+          <span class="block text-sm font-thin">Cook-Time</span>
+          <span class="block font-mono text-l font-thin mt-2"><%= post.cookTime %></span>
         </div>
           
-        <div>
-          <span class="block">Servings</span>
-          <span class="block"><%= post.servings %></span>
+        <div class="border-l-2 border-gray-400 px-2">
+          <span class="block text-sm font-thin">Servings</span>
+          <span class="block font-mono text-l font-thin mt-2"><%= post.servings %></span>
         </div>
           
       </div>
+
+      <h4 class="text-center mt-4 font-thin font-serif text-lg ">Notes</h4><hr>
+      <div class="bg-white font-mono text-center mt-4 rounded-lg shadow-md p-3">
+        <%= post.descriptions %>
+      </div>
     </div>
 
-    <div class="p-4 bg-white font-['Pacifico'] rounded-lg mt-5">
-      <h2 class="text-xl font-bold  mb-2">Ingredients:</h2>
-      <ul class=" list-disc list-inside">
+    <div class="p-4 bg-white rounded-lg mt-5">
+      <h2 class="text-xl font-thin font-serif mb-2">Ingredients:</h2>
+      <ul class="font-mono list-disc list-inside">
         <% post.ingredients.forEach((ingredient) => { %>
         <li><%= ingredient %></li>
         <% }); %>
       </ul>
-      <h2 class="text-xl font-bold mt-4 mb-2">Instructions:</h2>
-      <ol class="list-decimal list-inside ">
+      <h2 class="text-xl font-thin font-serif mt-4 mb-2">Instructions:</h2>
+      <ol class=" font-mono list-decimal list-inside ">
         <% post.instructions.forEach((instruction) => { %>
         <li><%= instruction %></li>
         <% }); %>
       </ol>
-      <h4 class="text-center mt-4 font-semibold text-lg ">Notes</h4>
-      <div class="bg-white rounded-lg shadow-md p-6">
-        <%= post.descriptions %>
-      </div>
+      
       
     </div>
     
@@ -74,18 +76,18 @@
   <div class="p-4 bg-transparent font-Pacifico shadow-lg  w-[50%] ml-5 rounded-lg mt-10">
     <ul>
       <% for(var i=0; i<comments.length; i++) { %>
-      <li class="bg-white rounded-lg shadow-sm px-4 mt-4 mb-4">
+      <li class="bg-white font-mono rounded-lg shadow-sm px-4 mt-4 mb-4">
         <span class="font-semibold"><%= comments[i].user %>-</span> <%= comments[i].comment %>
       </li>
       <% } %>
     </ul>
-    <h2 class="text-xl font-bold mb-2">Comment</h2>
+    <h2 class="text-l font-serif font-semibold mb-2">Comment</h2>
     <form action="/comment/createComment/<%= post._id%>" method="POST">
       <div class="mb-3">
         
         <input type="text" class="bg-gray-200 bg-opacity-40 border border-gray-500 text-black text-sm rounded-lg focus:ring-2 focus:ring-gray-400 block w-full p-2.5" id="comment" name="comment" placeholder="Add comment">
       </div>
-      <button class="bg-gray-200 hover:bg-gray-300 text-black font-semibold py-2 px-4  rounded">
+      <button class="bg-gray-200 font-serif hover:bg-gray-300 text-black font-semibold py-2 px-4  rounded">
         Submit
       </button>
     </form>
