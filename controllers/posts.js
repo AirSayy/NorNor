@@ -106,7 +106,7 @@ createPost: async (req, res) => {
       cloudinaryId: result.public_id,
       ingredients: trimmedIngredients,
       instructions: trimmedInstructions,
-      descriptions : req.body.descriptions,
+      descriptions: req.body.descriptions,
       prepTime: req.body.prepTime,
       cookTime: req.body.cookTime,
       servings: req.body.servings,

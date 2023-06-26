@@ -1,13 +1,13 @@
 <%- include('partials/header') -%>
 <!--  -->
 <div class=" bg-gray-100 relative">
-  <img class="absolute right-3 block w-[30%]  rounded-full object-cover opacity-25 " src="<%= post.image%>" alt="">
+  <img class="absolute right-12 w-[25%] top-8 block rounded-full object-cover opacity-25 " src="<%= post.image%>" alt="">
 <div class="container">
 
-  <div class="flex  bg-white justify-around ml-4 relative top-4 border-solid border-2 border-gray-600 w-[60%] p-8 shadow-2xl rounded-xl" >
+  <div class="flex  bg-white justify-around ml-4 relative top-4 border-solid border-2 border-gray-100 w-[60%] p-8 shadow-2xl rounded-xl" >
 
     <div class="mr-10">
-      <h2 class="text-2xl font-bold font-['Jost'] text-center uppercase tracking-widest mb-4"><%= post.title %></h2>
+      <h2 class="text-2xl font-bold font-['Pacifico'] text-center uppercase tracking-[.5rem] mb-4"><%= post.title %></h2>
       
       <img class="relative bottom-4 block w-[50%] rounded-lg shadow-xl dark:shadow-gray-600" src="<%= post.image%>" alt="Post Image" />
         
@@ -29,7 +29,7 @@
         </form>
         <% } %>
       </div>
-      <div class="flex">
+      <div class="flex font-['Allura']">
           
         <div class="mr-3">
           <span class="block">Prep-Time</span>
@@ -49,9 +49,9 @@
       </div>
     </div>
 
-    <div class="p-4 bg-white rounded-lg mt-5">
-      <h2 class="text-xl font-bold mb-2">Ingredients:</h2>
-      <ul class="text-gray-500 list-disc list-inside">
+    <div class="p-4 bg-white font-['Pacifico'] rounded-lg mt-5">
+      <h2 class="text-xl font-bold  mb-2">Ingredients:</h2>
+      <ul class=" list-disc list-inside">
         <% post.ingredients.forEach((ingredient) => { %>
         <li><%= ingredient %></li>
         <% }); %>
@@ -62,31 +62,44 @@
         <li><%= instruction %></li>
         <% }); %>
       </ol>
-      <p>Notes<%= post.descriptions %></p>
+      <h4 class="text-center mt-4 font-semibold text-lg ">Notes</h4>
+      <div class="bg-white rounded-lg shadow-md p-6">
+        <%= post.descriptions %>
+      </div>
+      
     </div>
     
   </div>
   
-  <div class="p-4 bg-white rounded-lg mt-5">
-    <h2 class="text-xl font-bold mb-4">Add Comment</h2>
-    <form action="/comment/createComment/<%= post._id%>" method="POST">
-      <div class="mb-3">
-        <label for="comment" class="form-label">Comment</label>
-        <input type="text" class="form-control" id="comment" name="comment">
-      </div>
-      <button type="submit" class="btn  bg-blue-500 text-white">Submit</button>
-    </form>
+  <div class="p-4 bg-transparent font-Pacifico shadow-lg  w-[50%] ml-5 rounded-lg mt-10">
     <ul>
       <% for(var i=0; i<comments.length; i++) { %>
-      <li class="mt-5">
-        <strong><%= comments[i].user %>: </strong><%= comments[i].comment %>
+      <li class="bg-white rounded-lg shadow-sm px-4 mt-4 mb-4">
+        <span class="font-semibold"><%= comments[i].user %>-</span> <%= comments[i].comment %>
       </li>
       <% } %>
     </ul>
+    <h2 class="text-xl font-bold mb-2">Comment</h2>
+    <form action="/comment/createComment/<%= post._id%>" method="POST">
+      <div class="mb-3">
+        
+        <input type="text" class="bg-gray-200 bg-opacity-40 border border-gray-500 text-black text-sm rounded-lg focus:ring-2 focus:ring-gray-400 block w-full p-2.5" id="comment" name="comment" placeholder="Add comment">
+      </div>
+      <button class="bg-gray-200 hover:bg-gray-300 text-black font-semibold py-2 px-4  rounded">
+        Submit
+      </button>
+    </form>
+    
   </div>
-  <div class="col-span-2 mt-5">
-    <a class="btn bg-blue-500 text-white" href="/profile">Return to Profile</a>
-    <a class="btn bg-blue-500 text-white" href="/feed">Return to Feed</a>
+  <div class="flex m-5 ">
+    <button class="bg-green-200 hover:bg-green-300 text-green-950 py-2 px-4 mr-2 rounded">
+      <a  href="/profile">Go to Profile</a>
+    </button>
+    <button class="bg-green-200 hover:bg-green-300 text-green-950  py-2 px-4  rounded">
+      <a  href="/feed">Go to Feed</a>
+    </button>
+    
+    
   </div>
 </div>
 </div>
