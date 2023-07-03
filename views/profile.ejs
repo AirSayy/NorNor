@@ -1,29 +1,29 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="grid grid-cols-1 md:grid-cols-2 mt-5">
-    <div class="p-4 bg-white">
-      <div>
-        <h1 class="font-serif text-2xl text-left font-bold mb-4">Hello: <%= user.userName %></h1>
+<div class="container m-auto">
+  <div>
+    <div class="">
+      <div class="text-right">
+        <h1 class="font-mono text-2xl font-bold uppercase mb-4">Hello: <%= user.userName %></h1>
         
       </div>
-    </div>
-    <div class="p-4 bg-white">
-      <ul class="grid grid-cols-2 gap-4">
+      <div class="flex justify-end mt-5">
+        <button class=" border-s-green-800 bg-yellow-500 text-white mb-2 p-2 mr-2 rounded-lg"><a href="/addRecipe" >Add Recipe</a></button>
+        <button class=" border-s-green-800 bg-green-500 text-white  mb-2 p-2 mr-2 rounded-lg"><a href="/logout" >Logout</a></button>
+        <button class=" border-s-green-800 bg-green-700 text-white mb-2 p-2 rounded-lg"><a href="/feed">Go to Feed</a></button>
+      </div>
+    </div><hr>
+    <div class=" ">
+      <ul class=" flex flex-wrap justify-around mt-4">
         <% for(var i=0; i<posts.length; i++) {%>
-        <li class=" flex justify-items-start">
+        <li class=" w-[30%] rounded-xl ">
           <a href="/post/<%= posts[i]._id%>">
-            <img class="max-w-full h-auto" src="<%= posts[i].image%>">
+            <img class="object-cover w-full h-[85%] rounded-xl  block  " src="<%= posts[i].image%>">
           </a>
         </li>
         <% } %>
       </ul>
-      <div class="flex justify-center mt-5">
-        <button class=" border-s-green-800 bg-yellow-500 text-white mb-2 p-2 mr-2 rounded-lg"><a href="/addRecipe" >Add Recipe</a></button>
-        <button class=" border-s-green-800 bg-green-500 text-white  mb-2 p-2 rounded-lg"><a href="/logout" >Logout</a></button>
-        
-        
-      </div>
-      <button class=" border-s-green-800 bg-green-700 text-white mb-2 p-2 rounded-lg"><a href="/feed">Go to Feed</a></button>
+      
+      
     </div>
   </div>
 </div>
