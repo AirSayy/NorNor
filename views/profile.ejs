@@ -14,7 +14,7 @@
     <div class="">
       <ul class="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-6">
         <% for(var i=0; i<posts.length; i++) {%>
-        <li class="w-full sm:w-1/2 md:w-[35%] lg:w-[70%] mt-4 hover:opacity-75 shadow-xl rounded-xl">
+        <li class="w-full sm:mr-2 sm:ml-2 sm:w-1/2 md:w-[80%] lg:w-[70%] mt-4 hover:opacity-75 shadow-xl rounded-xl">
           <a href="/post/<%= posts[i]._id%>">
             <div class="relative">
               <img class="object-cover w-full h-[400px] rounded-xl block" src="<%= posts[i].image%>">

@@ -1,22 +1,29 @@
 <%- include('partials/header') -%>
-<div class="container">
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
-    <ul class="grid grid-cols-8 md:grid-cols-2 gap-4 list-none">
-      <% for(var i=0; i<posts.length; i++) { %>
-        <li class="col-span-1 mt-5">
-          <div class="border rounded-lg shadow-lg object-fit w-80 h-50 p-4 bg-white">
-            <h2 class="text-xl font-bold mb-2 text-green-900"><%= posts[i].title %></h2>
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="w-full h-full object-cover" src="<%= posts[i].image%>" alt="Post Image">
-            </a>
-            <h2 class="text-yellow-500 mt-2">
-              <i class="fa fa-heart"></i> <%= posts[i].likes %>
-            </h2>
+<div class="m-auto container">
+  <ul class="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+    <% for(var i=0; i<posts.length; i++) { %>
+    <li class="w-full sm:mr-2 sm:ml-2 sm:w-1/2 md:w-full lg:w-[85%] mt-4 hover:opacity-75 shadow-xl rounded-xl">
+      <div class="border rounded-lg shadow-lg overflow-hidden">
+        <div class="relative">
+          <a href="/post/<%= posts[i]._id%>">
+            <img class="object-cover w-full h-[300px]" src="<%= posts[i].image%>" alt="Post Image">
+          
+          <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+            <p class="bg-gray-700 rounded-lg p-4 text-white font-mono">View Recipe</p>
           </div>
-        </li>
-      <% } %>
-    </ul>
-  </div>
+          </a>
+        </div>
+        <div class="p-4 bg-yellow-50">
+          <h2 class="text-xl font-bold mb-2 uppercase text-green-900"><%= posts[i].title %></h2>
+          <h2 class="text-black mt-2">
+            <i class="fa fa-heart text-red-800"></i> <%= posts[i].likes %>
+          </h2>
+        </div>
+      </div>
+    </li>
+    <% } %>
+  </ul>
 </div>
+
 
 <%- include('partials/footer') -%>
