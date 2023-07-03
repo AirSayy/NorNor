@@ -3,29 +3,32 @@
   <div>
     <div class="">
       <div class="text-right">
-        <h1 class="font-mono text-2xl font-bold uppercase mb-4">Hello: <%= user.userName %></h1>
-        
+        <h1 class="font-mono text-green-900 text-2xl font-bold uppercase mb-4">Hello: <%= user.userName %></h1>
       </div>
-      <div class="flex justify-end mt-5">
-        <button class=" border-s-green-800 bg-yellow-500 text-white mb-2 p-2 mr-2 rounded-lg"><a href="/addRecipe" >Add Recipe</a></button>
-        <button class=" border-s-green-800 bg-green-500 text-white  mb-2 p-2 mr-2 rounded-lg"><a href="/logout" >Logout</a></button>
-        <button class=" border-s-green-800 bg-green-700 text-white mb-2 p-2 rounded-lg"><a href="/feed">Go to Feed</a></button>
+      <div class="flex flex-wrap justify-end mt-5">
+        <button class="bg-yellow-300 font-serif hover:bg-yellow-400 text-green-800 mr-2 font-semibold py-1.5 px-3 rounded-lg"><a href="/addRecipe">Add Recipe</a></button>
+        <button class="bg-green-200 hover:bg-green-300 text-green-950 py-1.5 px-3 mr-2 rounded-lg"><a href="/logout">Logout</a></button>
+        <button class="bg-green-200 hover:bg-green-300 text-green-950 py-1.5 px-3 rounded-lg"><a href="/feed">Go to Feed</a></button>
       </div>
-    </div><hr>
-    <div class=" ">
-      <ul class=" flex flex-wrap justify-around mt-4">
+    </div>
+    <div class="">
+      <ul class="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-6">
         <% for(var i=0; i<posts.length; i++) {%>
-        <li class=" w-[30%] rounded-xl ">
+        <li class="w-full sm:w-1/2 md:w-[35%] lg:w-[70%] mt-4 hover:opacity-75 shadow-xl rounded-xl">
           <a href="/post/<%= posts[i]._id%>">
-            <img class="object-cover w-full h-[85%] rounded-xl  block  " src="<%= posts[i].image%>">
+            <div class="relative">
+              <img class="object-cover w-full h-[400px] rounded-xl block" src="<%= posts[i].image%>">
+              <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center opacity-0 hover:opacity-100 transition duration-300">
+                <p class="bg-gray-700 rounded-lg text-sm p-2 text-white font-mono">View Recipe</p>
+              </div>
+            </div>
           </a>
         </li>
         <% } %>
       </ul>
-      
-      
     </div>
   </div>
 </div>
+
 
 <%- include('partials/footer') -%>
