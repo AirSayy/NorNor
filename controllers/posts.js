@@ -20,24 +20,12 @@ module.exports = {
   getaddRecipe: async (req, res) => {
     try {
        // renders the addRecipe.ejs
-      res.render("addRecipe.ejs",);
+      res.render("addRecipe.ejs",{user: req.user});
     } catch (err) {
       console.log(err);
     }
   },
 
-  // GET /feed
-  // getFeed: async (req, res) => {
-  //   try {
-  //     // find and sort all posts in decsending order
-  //     const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-
-  //     // renders posts in /feed 
-  //     res.render("feed.ejs", { posts: posts });
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
   getFeed: async (req, res) => {
     try {
       let query = {};
@@ -55,7 +43,7 @@ module.exports = {
       const posts = await Post.find(query).sort({ createdAt: "desc" }).lean();
   
       // Renders posts in /feed with the search query
-      res.render("feed.ejs", { posts: posts, searchQuery: req.query.search });
+      res.render("feed.ejs", { posts: posts, searchQuery: req.query.search,user: req.user });
     } catch (err) {
       console.log(err);
     }
@@ -79,33 +67,6 @@ module.exports = {
     }
   },
 
-  // CREATE /post
-  // createPost: async (req, res) => {
-  //   try {
-  //     // Upload image to cloudinary
-  //     const result = await cloudinary.uploader.upload(req.file.path);
-      
-  //     // creates a new postSchema document in the database
-  //     await Post.create({
-  //       title: req.body.title,
-  //       image: result.secure_url,
-  //       cloudinaryId: result.public_id,
-  //       ingredients: req.body.ingredients.split('\n'),
-  //       instructions: req.body.instructions.split('\n'),
-  //       likes: 0,
-  //       user: req.user.id,
-  //     });
-      
-
-      
-  //     console.log("Post has been added!");
-
-  //     // redirects data to /profile
-  //     res.redirect("/profile");
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
 
   // CREATE /post
 createPost: async (req, res) => {
