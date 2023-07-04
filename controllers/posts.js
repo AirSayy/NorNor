@@ -27,18 +27,40 @@ module.exports = {
   },
 
   // GET /feed
+  // getFeed: async (req, res) => {
+  //   try {
+  //     // find and sort all posts in decsending order
+  //     const posts = await Post.find().sort({ createdAt: "desc" }).lean();
+
+  //     // renders posts in /feed 
+  //     res.render("feed.ejs", { posts: posts });
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  // },
   getFeed: async (req, res) => {
     try {
-      // find and sort all posts in decsending order
-      const posts = await Post.find().sort({ createdAt: "desc" }).lean();
-
-      // renders posts in /feed 
-      res.render("feed.ejs", { posts: posts });
+      let query = {};
+  
+      // Check if the search query exists in the request
+      if (req.query.search) {
+        // Create a regular expression with the search query and perform a case-insensitive search
+        const searchRegex = new RegExp(req.query.search, "i");
+  
+        // Add the search condition to the query
+        query = { title: searchRegex };
+      }
+  
+      // Find and sort all posts based on the query
+      const posts = await Post.find(query).sort({ createdAt: "desc" }).lean();
+  
+      // Renders posts in /feed with the search query
+      res.render("feed.ejs", { posts: posts, searchQuery: req.query.search });
     } catch (err) {
       console.log(err);
     }
   },
-
+  
   // GET /post
   getPost: async (req, res) => {
     try {

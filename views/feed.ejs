@@ -1,6 +1,20 @@
 <%- include('partials/header') -%>
 <!-- add search by name input -->
 <div class="m-auto container">
+  <div class="my-6">
+    <form action="/feed" method="GET">
+      <input type="text" name="search" placeholder="Search by name" class="border border-gray-300 py-2 px-4 rounded-lg">
+      <button type="submit" class="bg-gray-700 text-white py-2 px-4 rounded-lg ml-2">Search</button>
+    </form>
+  </div>
+  <% if (searchQuery) { %>
+    <a href="/feed" class="block text-center text-gray-600 mb-6">
+      <svg class="w-6 h-6 mx-auto" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+      </svg>
+      Back to Feed
+    </a>
+  <% } %>
   <ul class="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
     <% for(var i=0; i<posts.length; i++) { %>
     <li class="w-full sm:mr-2 sm:ml-2 sm:w-1/2 md:w-full lg:w-[85%] mt-4 hover:opacity-75 shadow-xl rounded-xl">
