@@ -1,6 +1,6 @@
-# Food Networking App
+# NorNor
 
-Welcome to the Global Food Social Networking App! This application allows users to share their favorite food recipes, post comments, and interact with others through likes and comments on recipes. This README provides an overview of the project, installation instructions, and key features.
+Welcome to NorNor, a Global Food Social Networking App! This application allows users to share their favorite food recipes, post comments, and interact with others through likes and comments on recipes. This README provides an overview of the project, installation instructions, and key features.
 
 ![Screenshot 2023-06-26 at 17 19 13](https://github.com/AirSayy/NorNor/assets/107049081/6959c5d2-4fc3-4de6-a956-f0f7fc01ac35)
 
